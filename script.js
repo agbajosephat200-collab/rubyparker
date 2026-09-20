@@ -1,0 +1,19 @@
+const checkoutModal = document.querySelector('#checkoutModal'), adminModal = document.querySelector('#adminModal'), memberModal = document.querySelector('#memberModal'), toast = document.querySelector('#toast');
+const showToast = message => { toast.textContent = message; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3800); };
+const open = modal => { modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); };
+const close = modal => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); };
+document.querySelectorAll('[data-open-checkout]').forEach(button => button.addEventListener('click', () => open(checkoutModal)));
+document.querySelector('#closeModal').addEventListener('click', () => close(checkoutModal));
+document.querySelector('#closeAdmin').addEventListener('click', () => close(adminModal));
+document.querySelector('#closeDashboard').addEventListener('click', () => close(adminModal));
+document.querySelector('#closeMember').addEventListener('click', () => close(memberModal));
+[checkoutModal, adminModal, memberModal].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) close(modal); }));
+document.querySelector('#memberAccess').addEventListener('click', () => open(memberModal));
+document.querySelector('#adminAccess').addEventListener('click', () => { open(adminModal); document.querySelector('#adminLogin').hidden = false; document.querySelector('#adminDashboard').hidden = true; });
+async function api(url, body) { const response = await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin', body:JSON.stringify(body)}); const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Something went wrong.'); return data; }
+document.querySelector('#adminForm').addEventListener('submit', async event => { event.preventDefault(); const error = document.querySelector('#formError'); error.textContent = ''; try { const result = await api('/api/auth/login', {email:document.querySelector('#adminEmail').value, password:document.querySelector('#adminPassword').value}); if (result.user.role !== 'admin') throw new Error('This account does not have administrator access.'); document.querySelector('#adminLogin').hidden = true; document.querySelector('#adminDashboard').hidden = false; } catch (err) { error.textContent = err.message; } });
+let registerMode = false;
+document.querySelector('#registerMember').addEventListener('click', () => { registerMode = !registerMode; document.querySelector('#registerMember').textContent = registerMode ? 'I already have an account' : 'Create a new member account'; document.querySelector('#memberForm button').innerHTML = registerMode ? 'Create account <b>→</b>' : 'Sign in <b>→</b>'; });
+document.querySelector('#memberForm').addEventListener('submit', async event => { event.preventDefault(); const error = document.querySelector('#memberError'); error.textContent = ''; try { await api(registerMode ? '/api/auth/register' : '/api/auth/login', {email:document.querySelector('#memberEmail').value, password:document.querySelector('#memberPassword').value}); close(memberModal); showToast(registerMode ? 'Your account is ready. Choose a membership to continue.' : 'Signed in successfully.'); } catch (err) { error.textContent = err.message; } });
+document.querySelector('#liveCheckout').addEventListener('click', async () => { try { const invoice = await api('/api/checkout', {}); window.location.assign(invoice.checkoutLink); } catch (err) { close(checkoutModal); open(memberModal); document.querySelector('#memberError').textContent = err.message; } });
+document.querySelector('#addFilm').addEventListener('click', () => showToast('Film management is ready to connect to your private video storage.'));

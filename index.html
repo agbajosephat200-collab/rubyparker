@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RubyParker — Independent cinema, paid in Bitcoin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <header class="nav">
+      <a class="logo" href="#top"><span class="logo-mark"></span>RUBYPARKER</a>
+      <nav>
+        <a href="#films">Browse films</a>
+        <a href="#membership">Membership</a>
+      </nav>
+      <div class="nav-actions"><button class="sign-in" id="memberAccess">Sign in</button><button class="sign-in" id="adminAccess">Admin <span>↗</span></button></div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> A home for independent vision</p>
+          <h1>Stories worth<br /><em>staying for.</em></h1>
+          <p class="intro">Get full access to a living archive of films, field notes, and behind-the-scenes stories. One membership. Paid in Bitcoin.</p>
+          <div class="hero-actions">
+            <button class="button primary" data-open-checkout>Become a member <b>→</b></button>
+            <a class="text-link" href="#films">Explore the archive <span>↓</span></a>
+          </div>
+          <div class="member-row">
+            <div class="avatars"><i></i><i></i><i></i><i></i></div>
+            <p>Join <strong>1,200+ curious viewers</strong><br />supporting independent work.</p>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-image"></div>
+          <div class="film-grain"></div>
+          <div class="vertical-title">THE&nbsp; ARCHIVE&nbsp; /&nbsp; 2024—ONGOING</div>
+          <button class="play-button" aria-label="Play featured film"><span>▶</span></button>
+          <div class="film-caption"><small>01 / FEATURED PREMIERE</small><strong>On the edge of silence</strong><span>Watch the trailer&nbsp; ↗</span></div>
+        </div>
+      </section>
+
+      <section class="ticker"><span>UNCOMMON STORIES</span><b>✦</b><span>DIRECT TO YOU</span><b>✦</b><span>PAID IN BITCOIN</span><b>✦</b><span>UNCOMMON STORIES</span><b>✦</b></section>
+
+      <section class="films" id="films">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span></span> Fresh from the archive</p><h2>Recent <em>releases</em></h2></div>
+          <a href="#membership" class="text-link">View all films <span>→</span></a>
+        </div>
+        <div class="film-grid">
+          <article class="film-card unlocked">
+            <div class="thumb thumb-one"><span class="duration">18:42</span><button class="card-play">▶</button></div>
+            <div class="card-info"><p>DOCUMENTARY · 2024</p><h3>A place to land</h3><span>Portland, Oregon</span></div>
+          </article>
+          <article class="film-card locked">
+            <div class="thumb thumb-two"><span class="duration">24:08</span><div class="lock">⌁<small>MEMBERS</small></div></div>
+            <div class="card-info"><p>FIELD NOTES · 2024</p><h3>Salt, stone &amp; sky</h3><span>Little Rann of Kutch, India</span></div>
+          </article>
+          <article class="film-card locked">
+            <div class="thumb thumb-three"><span class="duration">12:15</span><div class="lock">⌁<small>MEMBERS</small></div></div>
+            <div class="card-info"><p>PORTRAITS · 2024</p><h3>Night swimmers</h3><span>Lisbon, Portugal</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="membership" id="membership">
+        <div class="membership-copy"><p class="eyebrow"><span></span> One simple membership</p><h2>Good work<br />deserves a <em>direct line.</em></h2><p>Membership means every film, every new release, and the quiet confidence that your support reaches the people making the work.</p><div class="feature-list"><div><b>01</b><span>Unlimited access to the full archive</span></div><div><b>02</b><span>New films delivered as they premiere</span></div><div><b>03</b><span>Cancel anytime, no accounts held hostage</span></div></div></div>
+        <div class="price-card">
+          <div class="price-top"><span>ALL-ACCESS MEMBERSHIP</span><span class="bitcoin">₿ Bitcoin accepted</span></div>
+          <div class="price"><strong>$9</strong><span>/ month<br /><small>or 0.00014 BTC</small></span></div>
+          <p>Paid monthly in BTC at the current exchange rate.</p>
+          <button class="button primary full" data-open-checkout>Subscribe with Bitcoin <b>→</b></button>
+          <small class="secure">⌁ &nbsp; Secure, self-custody friendly payments</small>
+        </div>
+      </section>
+    </main>
+
+    <footer><a class="logo" href="#top"><span class="logo-mark"></span>RUBYPARKER</a><p>Independent cinema, on your terms.</p><span>© 2024 RubyParker Studio</span></footer>
+
+    <div class="modal" id="checkoutModal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="close" id="closeModal" aria-label="Close">×</button>
+        <p class="eyebrow"><span></span> Bitcoin subscription</p>
+        <h2>Your all-access<br /><em>membership</em></h2>
+        <div class="checkout-total"><span>Due today</span><strong>0.00014 BTC</strong><small>≈ $9.00 USD · Renews monthly</small></div>
+        <div class="wallet-box"><div class="qr"><span>₿</span></div><div><small>SEND BITCOIN TO</small><code>bc1q...9kyx8n2</code><button id="copyAddress">Copy address</button></div></div>
+        <p class="modal-note">Your private BTCPay invoice will open in a secure checkout window. Access begins once the Bitcoin payment is settled.</p>
+        <button class="button primary full" id="liveCheckout">Continue to secure checkout <b>→</b></button>
+      </div>
+    </div>
+    <div class="modal" id="adminModal" aria-hidden="true">
+      <section class="modal-card admin-login" id="adminLogin">
+        <button class="close" id="closeAdmin" aria-label="Close">×</button>
+        <p class="eyebrow"><span></span> RubyParker Studio</p>
+        <h2>Admin <em>access</em></h2>
+        <p class="modal-note">Use your owner account to manage films and view subscriber activity.</p>
+        <form id="adminForm">
+          <label>Email<input id="adminEmail" type="email" value="admin@rubyparker.com" required /></label>
+          <label>Password<input id="adminPassword" type="password" placeholder="Enter password" required /></label>
+          <p class="form-error" id="formError"></p>
+          <button class="button primary full" type="submit">Open dashboard <b>→</b></button>
+        </form>
+        <small class="demo-note">Your administrator account is created from secure deployment settings.</small>
+      </section>
+      <section class="modal-card dashboard" id="adminDashboard" hidden>
+        <button class="close" id="closeDashboard" aria-label="Close">×</button>
+        <div class="dashboard-head"><div><p class="eyebrow"><span></span> RubyParker Studio</p><h2>Admin <em>dashboard</em></h2></div><button class="button primary" id="addFilm">Add a film <b>+</b></button></div>
+        <div class="metrics"><div><span>ACTIVE MEMBERS</span><strong>1,248</strong><small>+8.4% this month</small></div><div><span>BTC THIS MONTH</span><strong>0.174</strong><small>≈ $11,208 USD</small></div><div><span>FILMS PUBLISHED</span><strong id="filmCount">36</strong><small>3 are members-only</small></div></div>
+        <div class="content-list"><div class="list-title"><span>RECENT CONTENT</span><span>STATUS</span></div><div class="content-row"><span><b>On the edge of silence</b><small>Feature premiere · Sep 18</small></span><i class="published">Published</i></div><div class="content-row"><span><b>Salt, stone &amp; sky</b><small>Field notes · Sep 02</small></span><i class="members">Members only</i></div><div class="content-row"><span><b>Night swimmers</b><small>Portraits · Aug 21</small></span><i class="members">Members only</i></div></div>
+        <p class="dashboard-note">Subscriber access is granted after a verified BTCPay payment settlement.</p>
+      </section>
+    </div>
+    <div class="modal" id="memberModal" aria-hidden="true">
+      <section class="modal-card admin-login">
+        <button class="close" id="closeMember" aria-label="Close">×</button>
+        <p class="eyebrow"><span></span> RubyParker membership</p>
+        <h2>Enter the <em>archive</em></h2>
+        <form id="memberForm">
+          <label>Email<input id="memberEmail" type="email" required /></label>
+          <label>Password<input id="memberPassword" type="password" minlength="12" required /></label>
+          <p class="form-error" id="memberError"></p>
+          <button class="button primary full" type="submit">Sign in <b>→</b></button>
+        </form>
+        <button class="plain-action" id="registerMember">Create a new member account</button>
+      </section>
+    </div>
+    <div class="toast" id="toast">Payment confirmed — welcome to RubyParker.</div>
+    <script src="script.js"></script>
+  </body>
+</html>
